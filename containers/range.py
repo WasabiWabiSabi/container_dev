@@ -32,7 +32,7 @@ def range(a, b=None, c=None):
             base = c
         else:
             base = abs(c)
-        while i <= itr/base:
+        while i <= itr / base:
             yield count
             i += 1
             count += c

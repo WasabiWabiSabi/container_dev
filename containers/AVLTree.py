@@ -27,9 +27,11 @@ class AVLTree(BST):
     def _is_avl_satisfied(node):
         if node is None:
             return True
-        x = AVLTree._is_avl_satisfied(node.left)
-        y = AVLTree._is_avl_satisfied(node.right)
-        return AVLTree._balance_factor(node) in [-1, 0, 1] and x and y
+        if AVLTree._balance_factor(node) not in [-1, 0, 1]: 
+            return False
+        left = AVLTree._is_avl_satisfied(node.left)
+        right = AVLTree._is_avl_satisfied(node.right)
+        return left and right
 
     @staticmethod
     def _left_rotate(node):
@@ -63,7 +65,7 @@ class AVLTree(BST):
             return
         self._insert(self.root, value)
         if not self.is_avl_satisfied():
-            self._rebalance(self.root)
+            self.rebalance(self.root)
         return
 
     @staticmethod
@@ -79,18 +81,32 @@ class AVLTree(BST):
             else:
                 node.left = Node(value)
 
+    def rebalance(self, x):
+        if x is None:
+            return
+        if self._balance_factor(x) in [-2, 2]:
+            x = self._rebalance(x)
+        else:
+            x.left = self.rebalance(x.left)
+            x.right = self.rebalance(x.right)
+        return x
+
     @staticmethod
     def _rebalance(node):
-        bf = AVLTree._balance_factor(node)
-        if bf < 0:
+        if node is None:
+            return
+        balance = AVLTree._balance_factor(node)
+        if balance < 0:
             if AVLTree._balance_factor(node.right) > 0:
-                AVLTree._right_rotate(node.right)
-                AVLTree._left_rotate(node)
+                node.right = AVLTree._right_rotate(node.right)
+                node = AVLTree._left_rotate(node)
             else:
-                AVLTree._left_rotate(node)
-        elif bf > 0:
+                node = AVLTree._left_rotate(node)
+            return node
+        elif balance > 0:
             if AVLTree._balance_factor(node.left) < 0:
-                AVLTree._left_rotate(node.left)
-                AVLTree._right_rotate(node)
+                node.left = AVLTree._left_rotate(node.left)
+                node = AVLTree._right_rotate(node)
             else:
-                AVLTree._right_rotate(node)
+                node = AVLTree._right_rotate(node)
+            return node

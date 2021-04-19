@@ -91,7 +91,7 @@ class AVLTree(BST):
                 return
             else:
                 return AVLTree._insert(value, node.right)
-    
+
     @staticmethod
     def _rebalance(node):
         bf = AVLTree._balance_factor(node)

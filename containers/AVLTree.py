@@ -29,7 +29,7 @@ class AVLTree(BST):
             return True
         x = AVLTree._is_avl_satisfied(node.left)
         y = AVLTree._is_avl_satisfied(node.right)
-        return AVLTree._balance_factor(node) in [-1, 0, 1] and x and y 
+        return AVLTree._balance_factor(node) in [-1, 0, 1] and x and y
 
     @staticmethod
     def _left_rotate(node):

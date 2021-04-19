@@ -27,12 +27,11 @@ class AVLTree(BST):
     def _is_avl_satisfied(node):
         if node is None:
             return True
+        if AVLTree._balance_factor(node) not in [-1, 0, 1]:
+            return False
         left = AVLTree._is_avl_satisfied(node.left)
         right = AVLTree._is_avl_satisfied(node.right)
-        if AVLTree._balance_factor(node) and left and right in range(-1, 2):
-            return True
-        else:
-            return False
+        return left and right
 
     @staticmethod
     def _left_rotate(node):

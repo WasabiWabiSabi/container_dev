@@ -10,8 +10,6 @@ class AVLTree(BST):
         if xs is not None:
             for x in xs:
                 self.insert(x)
-        if xs:
-            self.insert_list(xs)
 
     def balance_factor(self):
         return AVLTree._balance_factor(self.root)

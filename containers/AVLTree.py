@@ -58,39 +58,30 @@ class AVLTree(BST):
         return new_root
 
     def insert(self, value):
-        '''
-        FIXME:
-        Implement this function.
-        '''
         if not self.root:
             self.root = Node(value)
             return
         if value == self.root.value:
             return
-        else:
-            self._insert(value, self.root)
-            if not self.is_avl_satisfied():
-                self.root = self._rebalance(self.root)
-                if not self.is_avl_satisfied():
-                    self.root = self._rebalance(self.root)
-            return
+        self._insert(self.root, value)
+        if not self.is_avl_satisfied():
+            self._rebalance(self.root)
+        return
 
     @staticmethod
-    def _insert(value, node):
+    def _insert(node, value):
         if node.value == value:
             return
-        if value < node.value:
-            if node.left is None:
-                node.left = Node(value)
-                return
+        if value > node.value:
+            if node.right:
+                AVLTree._insert(node.right, value)
             else:
-                return AVLTree._insert(value, node.left)
-        else:
-            if node.right is None:
                 node.right = Node(value)
-                return
+        if value < node.value:
+            if node.left:
+                AVLTree._insert(node.left, value)
             else:
-                return AVLTree._insert(value, node.right)
+                node.left = Node(value)
 
     @staticmethod
     def _rebalance(node):

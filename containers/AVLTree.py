@@ -7,6 +7,9 @@ class AVLTree(BST):
     def __init__(self, xs=None):
         super().__init__()
         self.root = None
+        if xs is not None:
+            for x in xs:
+                self.insert(x)
         if xs:
             self.insert_list(xs)
 

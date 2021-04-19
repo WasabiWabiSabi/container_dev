@@ -29,7 +29,7 @@ class AVLTree(BST):
             return True
         left = AVLTree._is_avl_satisfied(node.left)
         right = AVLTree._is_avl_satisfied(node.right)
-        if AVLTree._balance_factor(node) and left and right in range(-1,2):
+        if AVLTree._balance_factor(node) and left and right in range(-1, 2):
             return True
         else:
             return False

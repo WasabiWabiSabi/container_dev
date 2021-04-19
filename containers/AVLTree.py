@@ -66,12 +66,12 @@ class AVLTree(BST):
         self._insert(self.root, value)
         if not self.is_avl_satisfied():
             self._rebalance(self.root)
+            if not self.is_avl_satisfied():
+                self.root = self._rebalance(self.root)
         return
 
     @staticmethod
     def _insert(node, value):
-        if node.value == value:
-            return
         if value > node.value:
             if node.right:
                 AVLTree._insert(node.right, value)

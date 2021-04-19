@@ -5,11 +5,8 @@ from containers.BST import BST
 class AVLTree(BST):
 
     def __init__(self, xs=None):
-        super().__init__()
-        if xs is not None:
-            for x in xs:
-                self.insert(x)
-        self.root = None
+        if xs:
+            self.insert_list(xs)
 
     def balance_factor(self):
         return AVLTree._balance_factor(self.root)
@@ -66,8 +63,6 @@ class AVLTree(BST):
         self._insert(self.root, value)
         if not self.is_avl_satisfied():
             self._rebalance(self.root)
-            if not self.is_avl_satisfied():
-                self.root = self._rebalance(self.root)
         return
 
     @staticmethod

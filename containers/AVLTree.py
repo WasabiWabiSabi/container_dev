@@ -65,7 +65,7 @@ class AVLTree(BST):
             return
         self._insert(self.root, value)
         if not self.is_avl_satisfied():
-            self.rebalance(self.root)
+            self._rebalance(self.root)
         return
 
     @staticmethod
@@ -81,32 +81,20 @@ class AVLTree(BST):
             else:
                 node.left = Node(value)
 
-    def rebalance(self, x):
-        if x is None:
-            return
-        if self._balance_factor(x) in [-2, 2]:
-            x = self._rebalance(x)
-        else:
-            x.left = self.rebalance(x.left)
-            x.right = self.rebalance(x.right)
-        return x
-
     @staticmethod
     def _rebalance(node):
-        if node is None:
-            return
-        balance = AVLTree._balance_factor(node)
-        if balance < 0:
+        bf = AVLTree._balance_factor(node)
+        if bf < 0:
             if AVLTree._balance_factor(node.right) > 0:
-                node.right = AVLTree._right_rotate(node.right)
-                node = AVLTree._left_rotate(node)
+                AVLTree._right_rotate(node.right)
+                AVLTree._left_rotate(node)
             else:
-                node = AVLTree._left_rotate(node)
+                AVLTree._left_rotate(node)
             return node
-        elif balance > 0:
+        elif bf > 0:
             if AVLTree._balance_factor(node.left) < 0:
-                node.left = AVLTree._left_rotate(node.left)
-                node = AVLTree._right_rotate(node)
+                AVLTree._left_rotate(node.left)
+                AVLTree._right_rotate(node)
             else:
-                node = AVLTree._right_rotate(node)
+                AVLTree._right_rotate(node)
             return node

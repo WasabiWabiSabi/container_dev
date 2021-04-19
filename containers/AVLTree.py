@@ -66,6 +66,8 @@ class AVLTree(BST):
         self._insert(self.root, value)
         if not self.is_avl_satisfied():
             self._rebalance(self.root)
+            if not self.is_avl_satisfied():
+                self._rebalance(self.root)
         return
 
     @staticmethod

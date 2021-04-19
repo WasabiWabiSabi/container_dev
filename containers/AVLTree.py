@@ -27,7 +27,7 @@ class AVLTree(BST):
     def _is_avl_satisfied(node):
         if node is None:
             return True
-        if AVLTree._balance_factor(node) not in [-1, 0, 1]: 
+        if AVLTree._balance_factor(node) not in [-1, 0, 1]:
             return False
         left = AVLTree._is_avl_satisfied(node.left)
         right = AVLTree._is_avl_satisfied(node.right)

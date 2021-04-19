@@ -8,15 +8,9 @@ class BST(BinaryTree):
         if xs is not None:
             for x in xs:
                 self.insert(x)
-        self.root = None
 
     def __repr__(self):
         return type(self).__name__ + '(' + str(self.to_list('inorder')) + ')'
-
-    def __eq__(self, t2):
-        in_order1 = BinaryTree.to_list(self, 'inorder')
-        in_order2 = BinaryTree.to_list(t2, 'inorder')
-        return in_order1 == in_order2
 
     def is_bst_satisfied(self):
         if self.root:

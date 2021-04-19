@@ -5,6 +5,7 @@ from containers.BST import BST
 class AVLTree(BST):
 
     def __init__(self, xs=None):
+        self.root = None
         if xs:
             self.insert_list(xs)
 

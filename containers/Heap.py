@@ -90,6 +90,7 @@ class Heap(BinaryTree):
                 self.root = None
                 print('root node deleted')
 
+    @staticmethod
     def _remove_br(node, binary):
         if binary[0] == '0':
             if len(binary) == 1:
@@ -105,6 +106,7 @@ class Heap(BinaryTree):
                 rm_val, node.right = Heap._remove_br(node.right, binary[1:])
         return rm_val, node
 
+    @staticmethod
     def _trickle(node):
         if Heap._is_heap_satisfied(node):
             print('heap is satisfied')

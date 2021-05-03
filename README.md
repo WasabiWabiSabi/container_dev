@@ -10,7 +10,7 @@ AVL Tree
 
 Heap
 
-Additionally, there is a container representing the fibonacci sequence and an implementation of a python range function.
+Additionally, there is a container representing the fibonacci sequence and an implementation of the python range function.
 
 
 Build status:

@@ -3,11 +3,14 @@
 This is a repository of various containers from my Data Structures course with Professor Izbicki at Claremont McKenna College. The containers you will get access to:
 
 Binary Tree
+
 Binary Search Tree
+
 AVL Tree
+
 Heap
 
-... along with a container representing the fibonacci sequence and an implementation of a python range function.
+Additionally, there is a container representing the fibonacci sequence and an implementation of a python range function.
 
 
 Build status:
